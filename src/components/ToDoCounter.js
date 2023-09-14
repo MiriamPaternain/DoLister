@@ -1,7 +1,7 @@
 function ToDoCounter({total, completed}) {
 
     return(
-        <h1>Has completado {completed} de {total} tareas</h1>
+        <p className="toDoCounter__text">Has completado <span className="toDoCounter__number">{completed}</span> de <span className="toDoCounter__number">{total}</span> tareas</p>
     );
 }
 

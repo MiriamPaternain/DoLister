@@ -1,10 +1,10 @@
 
 function ToDoItem({text, completed}) {
   return (
-<li>
-  <p>V{completed}</p>
-  <p>{text}</p>
-  <p>X</p>
+<li className="toDoItem">
+  <span className={`toDoItem__iconCheck ${completed && "toDoItem__iconCheck--active" }`}>V</span>
+  <p className={`toDoItem__text ${completed && "toDoItem__complete" }`}>{text}</p>
+  <span className="toDoItem__iconDelete">X</span>
 </li>
   );
 }
