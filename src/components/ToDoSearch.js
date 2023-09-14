@@ -1,10 +1,13 @@
-function ToDoSearch({handleToDoSearch, valueSearched}) {
+function ToDoSearch({handleToDoSearch, valueSearched, setValueSearched}) {
+   const handleInputChange = (event) => {
+    setValueSearched(event.target.value);
+  };
     return(
       <input 
       type="text" 
       placeholder="Busca aquí tu tarea"
       className="toDoSearch"
-      /* onChange={handleToDoSearch} */
+      onChange={handleInputChange}
       value={valueSearched} />
     );
 }

@@ -7,27 +7,36 @@ import CreateToDoButton from './CreateToDoButton.js';
 import { useState } from 'react';
 
 function App() {
-  //Estados
+//Variables
   const allToDos = [
     { id: 1, text: 'poner la lavadora', completed: true },
     { id: 2, text: 'tender la lavadora', completed: false },
     { id: 3, text: 'terminar proyecto react', completed: false },
   ];
 
+
+
+  //Estados
   const [valueSearched, setValueSearched] = useState('');
+  const [toDos, setToDos]= useState(allToDos);
+
+
+
+  const completedToDos = toDos.filter(todo => !!todo.completed).length;
+
+const totalToDos = toDos.length;
 
 //Eventos
-
-const handleToDoSearch = () => {
-
-};
 
 
   return (
     <>
-      <ToDoCounter completed={3} total={10} />
+      <ToDoCounter completed={completedToDos} total={totalToDos} />
 
-      <ToDoSearch handleToDoSearch={handleToDoSearch}/>
+      <ToDoSearch 
+      valueSearched={valueSearched}
+      setValueSearched={setValueSearched}
+      />
 
       <ToDoList>
         {allToDos.map((todo) => (
