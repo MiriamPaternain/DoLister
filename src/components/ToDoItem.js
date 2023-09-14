@@ -1,7 +1,11 @@
 
-function ToDoItem() {
+function ToDoItem({text, completed}) {
   return (
-  <input type="checkbox" placeholder="escribe aquí tu tarea"/>
+<li>
+  <p>V{completed}</p>
+  <p>{text}</p>
+  <p>X</p>
+</li>
   );
 }
 
