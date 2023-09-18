@@ -38,7 +38,6 @@
 
   &__iconDelete {
     position: absolute;
-    top: -24px;
     right: 0;
     cursor: pointer;
     display: flex;
@@ -52,5 +51,21 @@
 }
 
 .toDoItem__iconDelete:hover {
+  color: red;
+}
+
+.fa-solid .fa-check{
+  width: 50px;
+    height: 50px;
+    color: black;
+}
+
+.icon-svg-delete{
+  width: 50px;
+  height: 50px;
+  color: gray;
+}
+
+.icon-svg-delete:hover{
   color: red;
 }

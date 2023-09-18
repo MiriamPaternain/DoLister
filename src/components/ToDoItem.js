@@ -1,5 +1,4 @@
-import CompleteIcon from '../img/check.svg';
-import DeleteIcon from '../img/delete.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ToDoItem({ text, completed, onComplete, onDelete }) {
   return (
@@ -10,13 +9,13 @@ function ToDoItem({ text, completed, onComplete, onDelete }) {
         }`}
         onClick={onComplete}
       >
-        <img src={CompleteIcon} alt="complete icon" />
+        <FontAwesomeIcon icon="check" />
       </span>
       <p className={`toDoItem__text ${completed && 'toDoItem__complete'}`}>
         {text}
       </p>
       <span className='toDoItem__iconDelete' onClick={onDelete}>
-         <img src={DeleteIcon} alt="delete icon" />
+       <FontAwesomeIcon icon="trash-can" />
       </span>
     </li>
   );
