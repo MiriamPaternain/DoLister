@@ -7,40 +7,43 @@ import CreateToDoButton from './CreateToDoButton.js';
 import { useState } from 'react';
 
 function App() {
-//Variables
   const allToDos = [
     { id: 1, text: 'poner la lavadora', completed: true },
     { id: 2, text: 'tender la lavadora', completed: false },
     { id: 3, text: 'terminar proyecto react', completed: false },
   ];
 
-
-
   //Estados
   const [valueSearched, setValueSearched] = useState('');
-  const [toDos, setToDos]= useState(allToDos);
+  const [toDos, setToDos] = useState(allToDos);
 
+  const completedToDos = toDos.filter((todo) => !!todo.completed).length;
 
+  const totalToDos = toDos.length;
 
-  const completedToDos = toDos.filter(todo => !!todo.completed).length;
+  const searchedToDos = allToDos.filter((todo) => {
+    todo.text.includes(valueSearched);
+  });
 
-const totalToDos = toDos.length;
-
-//Eventos
-
+  //Eventos
 
   return (
     <>
       <ToDoCounter completed={completedToDos} total={totalToDos} />
 
-      <ToDoSearch 
-      valueSearched={valueSearched}
-      setValueSearched={setValueSearched}
+      <ToDoSearch
+        valueSearched={valueSearched}
+        setValueSearched={setValueSearched}
       />
 
       <ToDoList>
         {allToDos.map((todo) => (
-          <ToDoItem key={todo.id} text={todo.text} completed={todo.completed} valueSearched={valueSearched}/>
+          <ToDoItem
+            key={todo.id}
+            text={todo.text}
+            completed={todo.completed}
+            valueSearched={valueSearched}
+          />
         ))}
       </ToDoList>
 
