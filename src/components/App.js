@@ -22,7 +22,9 @@ function App() {
   const totalToDos = toDos.length;
 
   const searchedToDos = allToDos.filter((todo) => {
-    todo.text.includes(valueSearched);
+    const toDoText = todo.text.toLocaleLowerCase();
+    const searchText = valueSearched.toLocaleLowerCase();
+    return toDoText.includes(searchText);
   });
 
   //Eventos
@@ -37,7 +39,7 @@ function App() {
       />
 
       <ToDoList>
-        {allToDos.map((todo) => (
+        {searchedToDos.map((todo) => (
           <ToDoItem
             key={todo.id}
             text={todo.text}
