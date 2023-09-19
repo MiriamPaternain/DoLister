@@ -107,11 +107,7 @@ function App() {
       {showModal && (
         <div className='modal'>
           <div className='modal_content'>
-            <button 
-            className='close-button' 
-            onClick={closeModal}>
-              X
-            </button>
+           
             <input
               className='modal_content--input'
               type='text'
@@ -121,10 +117,20 @@ function App() {
               ref={inputRef}
               autoFocus
             />
+
+
             <button onClick={addNewToDoItem} className='modal_content--button'>
               Añadir tarea
             </button>
+
+             <button 
+            className='modal_content--closeButton' 
+            onClick={closeModal}>
+              X
+            </button>
+            
           </div>
+          
         </div>
       )}
 

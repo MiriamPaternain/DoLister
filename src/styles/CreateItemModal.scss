@@ -1,6 +1,7 @@
 .modal {
   display: flex;
   justify-content: center;
+
   transform: translateY(-270px);
 
   &_content {
@@ -8,18 +9,19 @@
     border-radius: 10px;
     border: solid 0.5px black;
     height: 200px;
-    width: 600px;
+    width: 700px;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
+ 
 
     &--input {
       color: white;
       font-size: 20px;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
-padding-left: 20px;
-      background-color: #a8a8a8;
+      padding-left: 20px;
+      background-color: #c7dddb;
       height: 50px;
       width: 400px;
       border-radius: 5px;
@@ -31,10 +33,24 @@ padding-left: 20px;
       border-radius: 5px;
       border: solid 0.5px black;
     }
+    &--closeButton {
+      display: flex;
+      margin-right: 10px;
+      z-index: 100;
+      border-radius: 50%;
+      transform: translateY(-99px);
+      border: 0.2px solid #a8a8a8;
+      background-color: #a8a8a8(0, 0, 0, 0);
+      font-size: 25px;
+      color: white;
+      box-shadow: 1px 1px 9px #a8a8a8;
+    }
   }
 }
 
 input::placeholder {
   color: white;
-
+}
+.modal_content--closeButton:hover {
+  background-color: rgb(243, 66, 66);
 }
