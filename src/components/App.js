@@ -8,7 +8,6 @@ import { useState } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
-
 library.add(fas);
 
 function App() {
@@ -22,34 +21,54 @@ function App() {
   const [valueSearched, setValueSearched] = useState('');
   const [toDos, setToDos] = useState(allToDos);
 
+  const [showModal, setShowModal] = useState(false);
+  const [newToDoItem, setNewToDoItem] = useState('');
+  const [nextId, setNextId] = useState(toDos.length + 1);
+
+  //Funciones
   const completedToDos = toDos.filter((todo) => !!todo.completed).length;
 
   const totalToDos = toDos.length;
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const addNewToDoItem = () => {
+    if (newToDoItem.trim() !== '') {
+      const newToDo = {
+        id: nextId,
+        text: newToDoItem,
+        completed: false,
+      };
+
+      setToDos([...toDos, newToDo]);
+      setNewToDoItem('');
+      setShowModal(false); // Oculta la ventana emergente después de agregar el elemento
+    }
+  };
+
+  //Eventos
 
   const searchedToDos = toDos.filter((todo) => {
     const toDoText = todo.text.toLocaleLowerCase();
     const searchText = valueSearched.toLocaleLowerCase();
     return toDoText.includes(searchText);
   });
-const completeToDo = (id) => {
-  const newToDos = [...toDos];
-const todoIndex = newToDos.findIndex(
-  (todo) => todo.id === id
-);
-  newToDos[todoIndex].completed = true;
-  setToDos(newToDos);
-}
 
-const deleteToDo = (id) => {
-  const newToDos = [...toDos];
-const todoIndex = newToDos.findIndex(
-  (todo) => todo.id === id
-);
-  newToDos.splice(todoIndex, 1);
-  setToDos(newToDos);
-}
+  const completeToDo = (id) => {
+    const newToDos = [...toDos];
+    const todoIndex = newToDos.findIndex((todo) => todo.id === id);
+    newToDos[todoIndex].completed = true;
+    setToDos(newToDos);
+  };
 
-  //Eventos
+  const deleteToDo = (id) => {
+    const newToDos = [...toDos];
+    const todoIndex = newToDos.findIndex((todo) => todo.id === id);
+    newToDos.splice(todoIndex, 1);
+    setToDos(newToDos);
+  };
 
   return (
     <>
@@ -73,7 +92,21 @@ const todoIndex = newToDos.findIndex(
         ))}
       </ToDoList>
 
-      <CreateToDoButton />
+      {showModal && (
+        <div className='modal'>
+          <div className='modal-content'>
+            <input
+              type='text'
+              placeholder='Nuevo elemento'
+              value={newToDoItem}
+              onChange={(e) => setNewToDoItem(e.target.value)}
+            />
+            <button onClick={addNewToDoItem}>Agregar</button>
+          </div>
+        </div>
+      )}
+
+      <CreateToDoButton openModal={openModal} />
     </>
   );
 }
