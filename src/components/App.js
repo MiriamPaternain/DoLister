@@ -40,6 +40,12 @@ function App() {
     setShowModal(false);
   };
 
+  const handleKeyPressEnter = (e) => {
+    if (e.key === 'Enter') {
+      addNewToDoItem();
+    }
+  };
+
   useEffect(() => {
     if (showModal) {
       inputRef.current.focus();
@@ -116,6 +122,7 @@ function App() {
               onChange={(e) => setNewToDoItem(e.target.value)}
               ref={inputRef}
               autoFocus
+              onKeyDown={handleKeyPressEnter}
             />
 
 
