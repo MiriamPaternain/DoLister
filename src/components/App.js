@@ -4,9 +4,10 @@ import ToDoSearch from './ToDoSearch.js';
 import ToDoList from './ToDoList.js';
 import ToDoItem from './ToDoItem.js';
 import CreateToDoButton from './CreateToDoButton.js';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { v4 as uuidv4 } from 'uuid';
 
 library.add(fas);
 
@@ -21,23 +22,30 @@ function App() {
   const [valueSearched, setValueSearched] = useState('');
   const [toDos, setToDos] = useState(allToDos);
 
-  const [showModal, setShowModal] = useState(false);
   const [newToDoItem, setNewToDoItem] = useState('');
-  const [nextId, setNextId] = useState(toDos.length + 1);
+  const [showModal, setShowModal] = useState(false);
+
+//Constantes
+  const totalToDos = toDos.length;
+  const inputRef = useRef(null);
 
   //Funciones
   const completedToDos = toDos.filter((todo) => !!todo.completed).length;
-
-  const totalToDos = toDos.length;
 
   const openModal = () => {
     setShowModal(true);
   };
 
+useEffect(() => {
+    if (showModal) {
+      inputRef.current.focus();
+    }
+  }, [showModal]);
+
   const addNewToDoItem = () => {
     if (newToDoItem.trim() !== '') {
       const newToDo = {
-        id: nextId,
+        id: uuidv4(),
         text: newToDoItem,
         completed: false,
       };
@@ -70,6 +78,9 @@ function App() {
     setToDos(newToDos);
   };
 
+
+
+
   return (
     <>
       <ToDoCounter completed={completedToDos} total={totalToDos} />
@@ -99,9 +110,11 @@ function App() {
               type='text'
               placeholder='Nuevo elemento'
               value={newToDoItem}
-              onChange={(e) => setNewToDoItem(e.target.value)}
+               onChange={(e) => setNewToDoItem(e.target.value)}
+  ref={inputRef}
+  autoFocus
             />
-            <button onClick={addNewToDoItem}>Agregar</button>
+            <button onClick={addNewToDoItem}>Añadir tarea</button>
           </div>
         </div>
       )}
