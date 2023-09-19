@@ -25,7 +25,7 @@ function App() {
   const [newToDoItem, setNewToDoItem] = useState('');
   const [showModal, setShowModal] = useState(false);
 
-//Constantes
+  //Constantes
   const totalToDos = toDos.length;
   const inputRef = useRef(null);
 
@@ -36,7 +36,7 @@ function App() {
     setShowModal(true);
   };
 
-useEffect(() => {
+  useEffect(() => {
     if (showModal) {
       inputRef.current.focus();
     }
@@ -78,9 +78,6 @@ useEffect(() => {
     setToDos(newToDos);
   };
 
-
-
-
   return (
     <>
       <ToDoCounter completed={completedToDos} total={totalToDos} />
@@ -105,16 +102,19 @@ useEffect(() => {
 
       {showModal && (
         <div className='modal'>
-          <div className='modal-content'>
+          <div className='modal_content'>
             <input
+              className='modal_content--input'
               type='text'
-              placeholder='Nuevo elemento'
+              placeholder='Escribe aquí tu nueva tarea'
               value={newToDoItem}
-               onChange={(e) => setNewToDoItem(e.target.value)}
-  ref={inputRef}
-  autoFocus
+              onChange={(e) => setNewToDoItem(e.target.value)}
+              ref={inputRef}
+              autoFocus
             />
-            <button onClick={addNewToDoItem}>Añadir tarea</button>
+            <button onClick={addNewToDoItem} className='modal_content--button'>
+              Añadir tarea
+            </button>
           </div>
         </div>
       )}
