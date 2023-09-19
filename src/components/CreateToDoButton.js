@@ -1,8 +1,8 @@
-function CreateToDoButton() {
+function CreateToDoButton({openModal}) {
     return(
         <button 
         className="createToDoButton"
-        /* onClick={} */
+        onClick={openModal}
         >+</button>
     );
 }
