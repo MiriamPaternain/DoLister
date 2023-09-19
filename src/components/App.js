@@ -36,6 +36,10 @@ function App() {
     setShowModal(true);
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   useEffect(() => {
     if (showModal) {
       inputRef.current.focus();
@@ -103,6 +107,11 @@ function App() {
       {showModal && (
         <div className='modal'>
           <div className='modal_content'>
+            <button 
+            className='close-button' 
+            onClick={closeModal}>
+              X
+            </button>
             <input
               className='modal_content--input'
               type='text'
