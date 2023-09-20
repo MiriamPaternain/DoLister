@@ -9,6 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuidv4 } from 'uuid';
 import ls from '../services/LocalStorage';
+import ToDoLoading from './ToDoLoading';
 
 library.add(fas);
 
@@ -21,6 +22,8 @@ function App() {
 
   const [newToDoItem, setNewToDoItem] = useState('');
   const [showModal, setShowModal] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   //Constantes
   const totalToDos = toDos.length;
@@ -90,6 +93,9 @@ function App() {
  useEffect(() => {
     const savedToDos = ls.get('toDos', null);
     setToDos(savedToDos);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }, []);
 
   useEffect(() => {
@@ -106,8 +112,13 @@ function App() {
       />
 
       <ToDoList>
-        {(searchedToDos.length === 0) && <p className='firstItem_text'>¡Crea tu primera tarea!</p>}
-        {searchedToDos.map((todo) => (
+        {isLoading ? (
+          <>
+          <ToDoLoading />
+          <ToDoLoading />
+          <ToDoLoading />
+          </>
+        ) : searchedToDos.length === 0 ? ( <p className='firstItem_text'>¡Crea tu primera tarea!</p> ) : (searchedToDos.map((todo) => (
           <ToDoItem
             key={todo.id}
             text={todo.text}
@@ -115,8 +126,9 @@ function App() {
             valueSearched={valueSearched}
             onComplete={() => completeToDo(todo.id)}
             onDelete={() => deleteToDo(todo.id)}
-          />
-        ))}
+          /> 
+        ))
+        )}
       </ToDoList>
 
       {showModal && (
