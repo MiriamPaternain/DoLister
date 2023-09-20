@@ -79,6 +79,8 @@ function App() {
     setToDos(newToDos);
   };
 
+//
+
   useEffect(() => {
     if (showModal) {
       inputRef.current.focus();
@@ -104,6 +106,7 @@ function App() {
       />
 
       <ToDoList>
+        {(searchedToDos.length === 0) && <p className='firstItem_text'>¡Crea tu primera tarea!</p>}
         {searchedToDos.map((todo) => (
           <ToDoItem
             key={todo.id}

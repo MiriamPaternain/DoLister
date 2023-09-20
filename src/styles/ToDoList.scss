@@ -2,4 +2,15 @@
     margin: 0;
     padding: 0 0 56px 0;
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.firstItem_text{
+margin: auto;
+margin-top: 80px;
+font-size: 30px;
+color: rgb(98, 142, 127);
+font-weight: 600;
 }
