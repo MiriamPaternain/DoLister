@@ -8,15 +8,12 @@ import { useState, useRef, useEffect } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuidv4 } from 'uuid';
+import ls from '../services/LocalStorage';
 
 library.add(fas);
 
 function App() {
-  const allToDos = [
-    { id: 1, text: 'poner la lavadora', completed: true },
-    { id: 2, text: 'tender la lavadora', completed: false },
-    { id: 3, text: 'terminar proyecto react', completed: false },
-  ];
+  const allToDos = [];
 
   //Estados
   const [valueSearched, setValueSearched] = useState('');
@@ -45,12 +42,6 @@ function App() {
       addNewToDoItem();
     }
   };
-
-  useEffect(() => {
-    if (showModal) {
-      inputRef.current.focus();
-    }
-  }, [showModal]);
 
   const addNewToDoItem = () => {
     if (newToDoItem.trim() !== '') {
@@ -88,6 +79,21 @@ function App() {
     setToDos(newToDos);
   };
 
+  useEffect(() => {
+    if (showModal) {
+      inputRef.current.focus();
+    }
+  }, [showModal]);
+
+ useEffect(() => {
+    const savedToDos = ls.get('toDos', null);
+    setToDos(savedToDos);
+  }, []);
+
+  useEffect(() => {
+    ls.set('toDos', toDos);
+  }, [toDos]);
+
   return (
     <>
       <ToDoCounter completed={completedToDos} total={totalToDos} />
@@ -113,7 +119,6 @@ function App() {
       {showModal && (
         <div className='modal'>
           <div className='modal_content'>
-           
             <input
               className='modal_content--input'
               type='text'
@@ -125,19 +130,14 @@ function App() {
               onKeyDown={handleKeyPressEnter}
             />
 
-
             <button onClick={addNewToDoItem} className='modal_content--button'>
               Añadir tarea
             </button>
 
-             <button 
-            className='modal_content--closeButton' 
-            onClick={closeModal}>
+            <button className='modal_content--closeButton' onClick={closeModal}>
               X
             </button>
-            
           </div>
-          
         </div>
       )}
 
