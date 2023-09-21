@@ -3,12 +3,14 @@ function ToDoSearch({handleToDoSearch, valueSearched, setValueSearched}) {
     setValueSearched(event.target.value);
   };
     return(
-      <input 
-      type="text" 
-      placeholder="Busca aquí tu tarea"
-      className="toDoSearch"
-      onChange={handleInputChange}
-      value={valueSearched} />
+      <div className="toDoSearch">
+        <input
+        type="text"
+        placeholder="Busca aquí tu tarea"
+        className="toDoSearch_input"
+        onChange={handleInputChange}
+        value={valueSearched} />
+      </div>
     );
 }
 
