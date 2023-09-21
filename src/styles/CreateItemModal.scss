@@ -22,6 +22,15 @@
     align-items: center;
     gap: 20px;
 
+    @media (min-width: 768px) {
+      width: 500px;
+    }
+    @media (min-width: 1024px) {
+      width: 800px;
+      height: 300px;
+      gap: 30px;
+    }
+
     &--input {
       margin-top: 50px;
       color: white;
@@ -33,12 +42,32 @@
       width: 250px;
       border-radius: 5px;
       border: solid 0.5px black;
+      @media (min-width: 768px) {
+        width: 400px;
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      @media (min-width: 1024px) {
+        width: 650px;
+        height: 80px;
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        margin-top: 70px;
+      }
     }
     &--button {
       height: 30px;
       width: 100px;
       border-radius: 5px;
       border: solid 0.5px black;
+      @media (min-width: 1024px) {
+        height: 50px;
+        width: 150px;
+        font-size: 18px;
+      }
     }
     &--closeButton {
       display: flex;
@@ -55,6 +84,17 @@
       font-size: 20px;
       color: white;
       box-shadow: 1px 1px 9px #a8a8a8;
+
+      @media (min-width: 768px) {
+        transform: translate(225px, -185px);
+      }
+
+      @media (min-width: 1024px) {
+        transform: translate(370px, -277px);
+        width: 40px;
+        height: 40px;
+        font-size: 28px;
+      }
     }
   }
 }
@@ -62,7 +102,17 @@
 input::placeholder {
   color: white;
   font-size: 16px;
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+  @media (min-width: 1024px) {
+    font-size: 20px;
+  }
 }
 .modal_content--closeButton:hover {
   background-color: rgb(243, 66, 66);
+}
+
+.modal_content--button:hover{
+  background-color: #d4e1e1;
 }
