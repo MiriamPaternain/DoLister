@@ -6,7 +6,11 @@
     align-items: center;
     margin-top: 24px;
     box-shadow: 0px 5px 50px black;
-    
+    @media (min-width: 1024px) {
+    width: 900px;
+    margin: auto;
+    margin-top: 30px;
+      }
   
 
   &__iconCheck {
@@ -35,7 +39,7 @@
 
       @media (min-width: 1024px) {
           font-size: 24px;
-      
+     
         }
   }
 
