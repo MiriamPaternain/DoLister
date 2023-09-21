@@ -4,6 +4,9 @@
    text-align: center;
    padding: 40px;
 
+@media (min-width: 1024px) {
+   font-size: 34px;
+}
 }
 
 .toDoCounter__number{
