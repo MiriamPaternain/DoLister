@@ -65,12 +65,16 @@ function App() {
     return toDoText.includes(searchText);
   });
 
-  const completeToDo = (id) => {
-    const newToDos = [...toDos];
-    const todoIndex = newToDos.findIndex((todo) => todo.id === id);
-    newToDos[todoIndex].completed = true;
+const completeToDo = (id) => {
+  const newToDos = [...toDos];
+  const todoIndex = newToDos.findIndex((todo) => todo.id === id);
+
+  if (todoIndex !== -1) {
+    newToDos[todoIndex].completed = !newToDos[todoIndex].completed; // Cambia el valor de 'completed' usando el operador de negación (!)
     setToDos(newToDos);
-  };
+  }
+};
+
 
   const deleteToDo = (id) => {
     const newToDos = [...toDos];
