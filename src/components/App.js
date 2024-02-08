@@ -17,7 +17,7 @@ function App() {
 
   //Estados
   const [valueSearched, setValueSearched] = useState('');
-  const [toDos, setToDos] = useState(allToDos);
+  const [toDos, setToDos] = useState([]);
 
   const [newToDoItem, setNewToDoItem] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -65,16 +65,15 @@ function App() {
     return toDoText.includes(searchText);
   });
 
-const completeToDo = (id) => {
-  const newToDos = [...toDos];
-  const todoIndex = newToDos.findIndex((todo) => todo.id === id);
+  const completeToDo = (id) => {
+    const newToDos = [...toDos];
+    const todoIndex = newToDos.findIndex((todo) => todo.id === id);
 
-  if (todoIndex !== -1) {
-    newToDos[todoIndex].completed = !newToDos[todoIndex].completed; // Cambia el valor de 'completed' usando el operador de negación (!)
-    setToDos(newToDos);
-  }
-};
-
+    if (todoIndex !== -1) {
+      newToDos[todoIndex].completed = !newToDos[todoIndex].completed; // Cambia el valor de 'completed' usando el operador de negación (!)
+      setToDos(newToDos);
+    }
+  };
 
   const deleteToDo = (id) => {
     const newToDos = [...toDos];
@@ -83,7 +82,7 @@ const completeToDo = (id) => {
     setToDos(newToDos);
   };
 
-//
+  //
 
   useEffect(() => {
     if (showModal) {
@@ -91,9 +90,11 @@ const completeToDo = (id) => {
     }
   }, [showModal]);
 
- useEffect(() => {
+  useEffect(() => {
     const savedToDos = ls.get('toDos', null);
-    setToDos(savedToDos);
+    if (savedToDos !== null) {
+      setToDos(savedToDos);
+    }
   }, []);
 
   useEffect(() => {
@@ -110,7 +111,9 @@ const completeToDo = (id) => {
       />
 
       <ToDoList>
-        {(searchedToDos.length === 0) && <p className='firstItem_text'>¡Crea tu primera tarea!</p>}
+        {searchedToDos.length === 0 && (
+          <p className='firstItem_text'>¡Crea tu primera tarea!</p>
+        )}
         {searchedToDos.map((todo) => (
           <ToDoItem
             key={todo.id}
