@@ -109,6 +109,7 @@ function App() {
           valueSearched={valueSearched}
           setValueSearched={setValueSearched}
         />
+        <CreateToDoButton openModal={openModal} />
         <ToDoList>
           {searchedToDos.length === 0 && (
             <p className='firstItem_text'>¡Crea tu primera tarea!</p>
@@ -150,7 +151,6 @@ function App() {
             </div>
           </div>
         )}
-        <CreateToDoButton openModal={openModal} />
       </div>
     </>
   );
