@@ -103,55 +103,55 @@ function App() {
 
   return (
     <>
-      <ToDoCounter completed={completedToDos} total={totalToDos} />
-
-      <ToDoSearch
-        valueSearched={valueSearched}
-        setValueSearched={setValueSearched}
-      />
-
-      <ToDoList>
-        {searchedToDos.length === 0 && (
-          <p className='firstItem_text'>¡Crea tu primera tarea!</p>
-        )}
-        {searchedToDos.map((todo) => (
-          <ToDoItem
-            key={todo.id}
-            text={todo.text}
-            completed={todo.completed}
-            valueSearched={valueSearched}
-            onComplete={() => completeToDo(todo.id)}
-            onDelete={() => deleteToDo(todo.id)}
-          />
-        ))}
-      </ToDoList>
-
-      {showModal && (
-        <div className='modal'>
-          <div className='modal_content'>
-            <input
-              className='modal_content--input'
-              type='text'
-              placeholder='Escribe aquí tu nueva tarea'
-              value={newToDoItem}
-              onChange={(e) => setNewToDoItem(e.target.value)}
-              ref={inputRef}
-              autoFocus
-              onKeyDown={handleKeyPressEnter}
+      <div className='container'>
+        <ToDoCounter completed={completedToDos} total={totalToDos} />
+        <ToDoSearch
+          valueSearched={valueSearched}
+          setValueSearched={setValueSearched}
+        />
+        <ToDoList>
+          {searchedToDos.length === 0 && (
+            <p className='firstItem_text'>¡Crea tu primera tarea!</p>
+          )}
+          {searchedToDos.map((todo) => (
+            <ToDoItem
+              key={todo.id}
+              text={todo.text}
+              completed={todo.completed}
+              valueSearched={valueSearched}
+              onComplete={() => completeToDo(todo.id)}
+              onDelete={() => deleteToDo(todo.id)}
             />
-
-            <button onClick={addNewToDoItem} className='modal_content--button'>
-              Añadir tarea
-            </button>
-
-            <button className='modal_content--closeButton' onClick={closeModal}>
-              X
-            </button>
+          ))}
+        </ToDoList>
+        {showModal && (
+          <div className='modal'>
+            <div className='modal_content'>
+              <input
+                className='modal_content--input'
+                type='text'
+                placeholder='Escribe aquí tu nueva tarea'
+                value={newToDoItem}
+                onChange={(e) => setNewToDoItem(e.target.value)}
+                ref={inputRef}
+                autoFocus
+                onKeyDown={handleKeyPressEnter}
+              />
+              <button
+                onClick={addNewToDoItem}
+                className='modal_content--button'>
+                Añadir tarea
+              </button>
+              <button
+                className='modal_content--closeButton'
+                onClick={closeModal}>
+                X
+              </button>
+            </div>
           </div>
-        </div>
-      )}
-
-      <CreateToDoButton openModal={openModal} />
+        )}
+        <CreateToDoButton openModal={openModal} />
+      </div>
     </>
   );
 }

@@ -5,3 +5,12 @@
 @import './ToDoList.scss';
 @import './ToDoSearch.scss';
 @import './CreateItemModal.scss';
+
+.container {
+  background-image: url(../img/fondo.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
